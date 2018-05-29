@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {RoutingRoutingModule} from "./routing/routing-routing.module";
+import {RoutingRoutingModule} from './routing/routing-routing.module';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule, MatButtonModule, } from '@angular/material';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -8,7 +10,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [ RoutingRoutingModule, ]
+      imports: [ RoutingRoutingModule, MatToolbarModule, MatMenuModule, MatButtonModule, ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

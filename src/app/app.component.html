@@ -1,10 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>Antoine Ceol deal with Currencies</h1>
-{{  title }}
-<nav>
-  <a routerLink="/currency" routerLinkActive="active">Currency</a>
-  <a routerLink="/currencies" routerLinkActive="active">Currencies</a>
-</nav>
+<mat-toolbar>
+  <mat-toolbar-row>
+  <h1>{{title}}</h1>
+    <nav>
+      <button mat-button routerLink="/currency/euro" routerLinkActive="active">Currency €</button>
+      <button mat-button routerLink="/currency/dollar" routerLinkActive="active">Currency $</button>
+      <button mat-button routerLink="/currencies" routerLinkActive="active">Currencies</button>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>
+
 
 

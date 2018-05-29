@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-currency',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrencyComponent implements OnInit {
 
-  constructor() { }
+  curr: String;
+
+  constructor(private route: ActivatedRoute) {
+    this.curr = 'toto';
+    this.route.params.subscribe( params => {
+      this.curr = params.curr;
+    } );
+  }
 
   ngOnInit() {
   }
