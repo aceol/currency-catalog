@@ -16,3 +16,9 @@
   </div>
   </div>
 </mat-grid-list>
+
+<mat-paginator [length]="nbCurrencies"
+               [pageSize]="pageSize"
+               [pageIndex]="currentPage"
+               (page)="pageEvent = getCurrencies($event)"
+               [pageSizeOptions]="[5, 10, 25, 100]">

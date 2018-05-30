@@ -21,16 +21,27 @@ export class AvailableCurrenciesComponent implements OnInit {
 
   title: String;
   currencies: Array<Currency>;
+  currentPage: Number;
+  pageSize: Number;
+  nbCurrencies: Number;
 
-  constructor(private http: HttpClient,) {
+
+  constructor(private http: HttpClient) {
     this.title = 'Available currencies';
     this.getCurrencies();
+    this.currentPage = 1;
+    this.pageSize = 200;
   }
 
-  getCurrencies () {
-    this.http.get<DataCurrencies>('https://api.openfintech.io/v1/currencies').subscribe(
+  getCurrencies (data = null) {
+    if (data) {
+      this.currentPage = data.pageIndex;
+    }
+
+    this.http.get<DataCurrencies>(`https://api.openfintech.io/v1/currencies?page[${this.currentPage}]=1&page[size]=${this.pageSize}`).subscribe(
       value => {
         this.currencies = value.data;
+        this.nbCurrencies = value.meta.total;
       });
   }
 

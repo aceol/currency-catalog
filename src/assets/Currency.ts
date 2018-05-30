@@ -10,11 +10,25 @@ export class Attributes{
 
 export class Currency{
   id: String;
-  attributes: Attributes
+  attributes: Attributes;
+}
+
+class Meta {
+  total: Number;
+  pages: Number;
+}
+
+class Links {
+  first: String;
+  previous: String;
+  next: String;
+  last: String;
 }
 
 export class DataCurrencies{
   data: Array<Currency>;
+  meta: Meta;
+  links: Links;
 }
 export class DataCurrency{
   data: Currency;
