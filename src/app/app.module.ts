@@ -1,23 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {RoutingRoutingModule} from './routing/routing-routing.module';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule, MatButtonModule, } from '@angular/material';
+import { RoutingRoutingModule } from './routing/routing-routing.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule, MatMenuModule, MatButtonModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
-    BrowserModule,
     RoutingRoutingModule,
     NoopAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    MatListModule,
+    MatGridListModule
   ],
   exports: [
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
+    MatGridListModule
   ],
   declarations: [ AppComponent],
   bootstrap: [ AppComponent]

@@ -1,0 +1,30 @@
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+div {
+  display: inline-block;
+  padding: 2px;
+  cursor: pointer;
+}
+
+span span {
+  background-color: darkgray;
+  margin: 5px;
+  padding: 5px;
+  border-radius: .25rem!important;
+}
+
+
+div.col{
+  background-color: lightgray;
+  padding: 10px;
+  margin: 2px;
+}
+
+mat-grid-tile{
+  background-color: black;
+}
+
+label {
+  font-weight: bold;
+  padding: 2px;
+}

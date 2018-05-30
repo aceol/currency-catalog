@@ -1,0 +1,6 @@
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+.mat-chip.mat-standard-chip {
+  background-color: #616161;
+  color: #fff
+}

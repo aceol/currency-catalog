@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CurrencyComponent } from '../currency/currency.component';
 import { AvailableCurrenciesComponent } from '../available-currencies/available-currencies.component';
 import {APP_BASE_HREF} from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatGridListModule, MatListModule, MatChipsModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -19,7 +21,12 @@ const routes: Routes = [
     CurrencyComponent,
     AvailableCurrenciesComponent,
   ],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    MatGridListModule,
+    MatListModule,
+    MatChipsModule],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   exports: [RouterModule]
 })

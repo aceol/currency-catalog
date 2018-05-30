@@ -1,3 +1,18 @@
 <p>
-  available-currencies works!
+  {{title}}
 </p>
+<mat-grid-list cols="4">
+  <div class="row">
+  <div *ngFor="let currency of currencies; index as i"
+    routerLink="/currency/{{currency.id}}"
+    class="col"
+  >
+    <span>
+      <span>i</span>
+      <span><label>id:</label> {{currency.attributes.code}}</span>
+      <span><label>type:</label> {{currency.attributes.category}}</span>
+      <span><label>symbol:</label> {{currency.attributes.symbol}}</span>
+    </span>
+  </div>
+  </div>
+</mat-grid-list>
