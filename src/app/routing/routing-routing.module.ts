@@ -5,6 +5,7 @@ import { AvailableCurrenciesComponent } from '../available-currencies/available-
 import {APP_BASE_HREF} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatGridListModule, MatListModule, MatChipsModule, MatPaginatorModule } from '@angular/material';
+import {CurrencyService} from '../services/currency.service';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
     MatChipsModule,
     MatPaginatorModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }, CurrencyService ],
   exports: [RouterModule]
 })
 export class RoutingRoutingModule { }

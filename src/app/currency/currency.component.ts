@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
-import { HttpClient } from '@angular/common/http';
-import { Currency, DataCurrency } from '../../assets/Currency';
+import { Currency } from '../../assets/Currency';
+import {CurrencyService} from '../services/currency.service';
 
 @Component({
   selector: 'app-currency',
@@ -14,23 +14,27 @@ export class CurrencyComponent implements OnInit {
   curr: String;
   currency: Currency;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient,) {
+  constructor(private route: ActivatedRoute, private currencyService: CurrencyService) {
     this.curr = 'toto';
+  }
 
-    this.route.params.subscribe( params => {
-      this.curr = params.curr;
-      this.getData(this.curr);
+  getData(curr: String) {
+    this.curr = curr;
+    console.log('=====> inside get data');
+    const currencyObs = this.currencyService.getCurrency(curr);
+    console.log(currencyObs);
+    currencyObs.subscribe(value => {
+      (this.currency = value.data);
+      console.log('inside get data getCurrency callback =======>', value.data);
     });
   }
 
-  getData(curr: String){
-    this.http.get<DataCurrency>('https://api.openfintech.io/v1/currencies/' + curr).subscribe(
-      value => {
-        this.currency = value.data;
-      });
-  }
-
   ngOnInit() {
+    this.route.params.subscribe( params => {
+      this.curr = params.curr;
+      // FIXME
+      //  this.getData(this.curr);
+    });
   }
 
 }
