@@ -13,7 +13,7 @@ export class Currency{
   attributes: Attributes;
 }
 
-class Meta {
+export class Meta {
   total: Number;
   pages: Number;
 }
@@ -32,4 +32,7 @@ export class DataCurrencies{
 }
 export class DataCurrency{
   data: Currency;
+  currency(){
+    this.data = new Currency();
+  }
 }

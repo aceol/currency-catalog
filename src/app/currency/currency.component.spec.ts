@@ -1,20 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, getTestBed, inject, TestBed} from '@angular/core/testing';
 import { CurrencyComponent } from './currency.component';
 import {ActivatedRoute} from '@angular/router';
 import { MatListModule, MatButtonModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import {CurrencyService} from '../services/currency.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {Observable} from 'rxjs';
+import {
+  HttpRequest,
+  HttpResponse,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS,
+  HttpClient
+} from '@angular/common/http';
 import {Currency, DataCurrency} from '../../assets/Currency';
+
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import {Observable} from "rxjs/internal/Observable";
 
 describe('CurrencyComponent', () => {
   let component: CurrencyComponent;
   let fixture: ComponentFixture<CurrencyComponent>;
-  // let httpMock: HttpTestingController;
-  let currencyServiceSpy: jasmine.SpyObj<CurrencyService>;
+
+  class MockAuthService extends CurrencyService {
+    getCurrency(curr): Observable<DataCurrency> {
+      const dataCurrency = new DataCurrency();
+      dataCurrency.data = new Currency();
+      dataCurrency.data.id = 'EURO';
+      return Observable.create(function(observer) {
+        observer.next(dataCurrency);
+      });
+    }
+  }
 
   beforeEach(async(() => {
-    const spy = jasmine.createSpyObj('CurrencyService', ['getCurrency']);
 
     TestBed.configureTestingModule({
       declarations: [ CurrencyComponent ],
@@ -25,7 +44,6 @@ describe('CurrencyComponent', () => {
         MatMenuModule,
         MatButtonModule ],
       providers: [
-        { provide: CurrencyService, useValue: spy },
         { provide: ActivatedRoute,
           useValue: {
             params: {
@@ -35,41 +53,35 @@ describe('CurrencyComponent', () => {
             },
           }
         },
+        CurrencyService
       ]
     })
     .compileComponents();
 
+    TestBed.overrideComponent(
+      CurrencyComponent,
+      {set: {providers: [{provide: CurrencyService, useClass: MockAuthService}]}}
+    );
+
+
     fixture = TestBed.createComponent(CurrencyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    currencyServiceSpy = TestBed.get(CurrencyService);
-
-    // A deplacer dans le service
-    // httpMock = TestBed.get(HttpTestingController);
   }));
 
-  it('should create', () => {
+  it('should create', inject([CurrencyService], (currencyService: CurrencyService) => {
     const app = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
     expect(app.curr).toEqual('euros');
-  });
+  }));
 
-  it('should fetch data', () => {
+  it('should fetch data',  inject([CurrencyService], (currencyService: CurrencyService) => {
     const app = fixture.debugElement.componentInstance;
-    const dataCurrency = new DataCurrency();
-    dataCurrency.data = new Currency();
-    dataCurrency.data.id = 'EUR';
-    const retValue = Observable.create(() => dataCurrency); // new Observable<DataCurrency>();
-    currencyServiceSpy.getCurrency.and.callFake( arg => {
-      console.log('====> currencyServiceSpy.getCurrency.and.callFake', arg);
-      return retValue;
-    });
 
     app.getData('EUR');
-    expect(app.curr).toBe('EUR', 'currency code  updated');
-    expect(app.currency.id).toBe('EUR', 'currency updated');
 
-    expect(currencyServiceSpy.getCurrency.calls.count())
-      .toBe(1, 'spy method was called once');
-  });
+    expect(app.curr).toBe('EUR', 'currency code  updated');
+    expect(app.currency.id).toBe('EURO', 'currency updated');
+  }));
+
 });

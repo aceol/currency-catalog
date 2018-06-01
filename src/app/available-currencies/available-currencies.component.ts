@@ -35,6 +35,7 @@ export class AvailableCurrenciesComponent implements OnInit {
   getCurrencies (data = null) {
     if (data) {
       this.currentPage = data.pageIndex;
+      this.pageSize = data.pageSize;
     }
 
     this.currencyService.getCurrencies({currentPage: this.currentPage, pageSize: this.pageSize, }).subscribe(
