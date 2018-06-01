@@ -28,7 +28,7 @@ export class AvailableCurrenciesComponent implements OnInit {
   constructor(private currencyService: CurrencyService) {
     this.title = 'Available currencies';
     this.currentPage = 1;
-    this.pageSize = 200;
+    this.pageSize = 10;
   }
 
 
