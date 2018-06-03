@@ -28,7 +28,7 @@ const routes: Routes = [
     MatGridListModule,
     MatListModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }, CurrencyService ],
   exports: [RouterModule]

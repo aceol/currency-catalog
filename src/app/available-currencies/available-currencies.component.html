@@ -1,22 +1,20 @@
 <p>
   {{title}}
 </p>
-<mat-grid-list cols="4">
-  <div class="row">
+
+<div class="parent">
+<div class="parent">
   <div *ngFor="let currency of currencies; index as i"
     routerLink="/currency/{{currency.id}}"
-    class="col"
-  >
+    class="child">
     <span>
-      <span>i</span>
-      <span><label>id:</label> {{currency.attributes.code}}</span>
-      <span><label>type:</label> {{currency.attributes.category}}</span>
-      <span><label>symbol:</label> {{currency.attributes.symbol}}</span>
+      <div><label>id:</label> {{currency.attributes.code}}</div>
+      <div><label>type:</label> {{currency.attributes.category}}</div>
+      <div><label>symbol:</label> {{currency.attributes.symbol}}</div>
     </span>
   </div>
-  </div>
-</mat-grid-list>
-
+</div>
+</div>
 <mat-paginator [length]="nbCurrencies"
                [pageSize]="pageSize"
                [pageIndex]="currentPage"

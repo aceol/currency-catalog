@@ -1,25 +1,16 @@
-div {
-  display: inline-block;
-  padding: 2px;
-  cursor: pointer;
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-span span {
-  background-color: darkgray;
+.child {
+  flex: 1 0 20%; /* explanation below */
   margin: 5px;
-  padding: 5px;
+  padding:5px;
+  border: 1px solid darkgray;
   border-radius: .25rem!important;
-}
-
-
-div.col{
   background-color: lightgray;
-  padding: 10px;
-  margin: 2px;
-}
-
-mat-grid-tile{
-  background-color: black;
 }
 
 label {
