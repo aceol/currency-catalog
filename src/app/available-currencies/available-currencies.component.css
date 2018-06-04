@@ -2,10 +2,12 @@
 .parent {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  /*flex-shrink: 0;
+  flex-grow: 0;*/
 }
 
 .child {
-  flex: 1 0 20%; /* explanation below */
   margin: 5px;
   padding:5px;
   border: 1px solid darkgray;
@@ -16,4 +18,26 @@
 label {
   font-weight: bold;
   padding: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .child {
+    flex: 0 0 40%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .child {
+    flex: 0 0 18%;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .child {
+    flex: 0 0 14%;
+  }
 }
