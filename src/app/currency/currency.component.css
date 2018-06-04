@@ -1,4 +1,8 @@
-.mat-chip.mat-standard-chip {
-  background-color: #616161;
-  color: #fff
+.mat-list-item {
+  color: black;
+}
+
+label{
+  font-weight: bold;
+  padding-right: 5px;
 }

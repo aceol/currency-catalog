@@ -1,10 +1,10 @@
 
 <h1>{{curr}}</h1>
 
-<mat-list *ngIf="currency" role="list">
- <span mat-list-item>{{currency.attributes.code}}</span>
-  <mat-list-item>{{currency.attributes.name}}</mat-list-item>
-  <mat-list-item>{{currency.attributes.currency_type}}</mat-list-item>
-  <mat-list-item>{{currency.attributes.code_iso_numeric3}}</mat-list-item>
-  <mat-list-item>{{currency.attributes.code_iso_alpha3}}</mat-list-item>
+<mat-list *ngIf="currency">
+  <mat-list-item><label>Code: </label> {{currency.attributes.code}}</mat-list-item>
+  <mat-list-item><label>Name: </label> {{currency.attributes.name}}</mat-list-item>
+  <mat-list-item><label>Currency type: </label> {{currency.attributes.currency_type}}</mat-list-item>
+  <mat-list-item><label>Code ISO Numeric 3: </label> {{currency.attributes.code_iso_numeric3}}</mat-list-item>
+  <mat-list-item><label>Code ISO Alpha 3: </label> {{currency.attributes.code_iso_alpha3}}</mat-list-item>
 </mat-list>
