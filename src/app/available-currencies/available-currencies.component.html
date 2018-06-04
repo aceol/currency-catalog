@@ -18,5 +18,6 @@
 <mat-paginator [length]="nbCurrencies"
                [pageSize]="pageSize"
                [pageIndex]="currentPage"
+               [showFirstLastButtons]="true"
                (page)="pageEvent = getCurrencies($event)"
                [pageSizeOptions]="[10, 50, 100]">
